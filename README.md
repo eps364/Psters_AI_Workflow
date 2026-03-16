@@ -1,8 +1,9 @@
-# Psters AI Workflow
+<h1>
+  <img src="plugins/psters-ai-workflow/assets/logo.svg" alt="Psters AI Workflow logo" width="56" style="vertical-align: middle; margin-right: 10px;" />
+  Psters AI Workflow
+</h1>
 
 An anti-vibe-coding, agentic workflow to use AI with engineering rigor in any project.
-
-![Psters AI Workflow logo](plugins/psters-ai-workflow/assets/logo.svg)
 
 ## Psters AI Workflow Explained (START HERE)
 
