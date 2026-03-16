@@ -5,13 +5,13 @@ description: Manages Git worktrees for isolated parallel development. Use when c
 
 # Git Worktree
 
-**When to use:** Creating isolated working directories for parallel branch work without switching the main repo.
+Create and use Git worktrees so multiple branches can be worked on in separate directories.
 
-**Workflow:**
+**Commands (run from repo root):**
 - List: `git worktree list`
-- Add: `git worktree add <path> <branch>` (e.g. `git worktree add ../my-feat ../feature-branch`)
+- Add: `git worktree add <path> <branch>` (e.g. `git worktree add ../project-feat ../feature-branch`)
 - Remove: `git worktree remove <path>` (after switching away and committing or discarding)
 
-**Constraints:** Run commands from repo root. For multi-repo workspaces, create worktrees from the repo that contains the target branch.
+**Use case:** Run a separate agent or human in another branch in a different folder without touching the current branch. Each worktree has its own working directory but shares the same .git history.
 
-**Output:** Worktree path and branch ready for isolated work.
+**Note:** Repo root is the workspace root; backend/frontend/lambdas may be sibling folders or monorepo structure. Create worktrees from the repo that contains the branch you need.

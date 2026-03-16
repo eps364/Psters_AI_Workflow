@@ -1,0 +1,61 @@
+name: Sync Docs to Wiki
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - "CONTRIBUTING.md"
+      - "README.md"
+      - "scripts/export-wiki.mjs"
+      - ".github/workflows/sync-wiki.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Export wiki pages
+        run: node scripts/export-wiki.mjs .wiki-export
+
+      - name: Clone wiki repository
+        env:
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git clone "https://x-access-token:${TOKEN}@github.com/${REPO}.wiki.git" wiki; then
+            echo "Wiki repository cloned."
+          else
+            echo "Wiki repository does not exist yet or is disabled."
+            echo "Enable Wiki in GitHub UI first, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Copy exported pages into wiki
+        run: |
+          rm -rf wiki/*.md
+          cp -R .wiki-export/*.md wiki/
+
+      - name: Commit and push wiki changes
+        run: |
+          cd wiki
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No wiki changes to commit."
+            exit 0
+          fi
+          git add .
+          git commit -m "docs: sync wiki from repository docs"
+          git push origin master

@@ -1,20 +1,44 @@
 ---
 name: review
-description: Run a multi-angle review focused on regressions, risks, and simplification opportunities.
+description: Multi-agent code review. Runs contextual review agents based on what was changed. No compound-engineering.local.md dependency.
 argument-hint: "[PR number, branch name, or path]"
 ---
 
 # Review
 
-**Objective:** Run a multi-angle review focused on regressions, risks, and simplification opportunities.
+Perform multi-agent code review using project-local agents.
 
-**Inputs:** PR number, branch name, or path.
+## Target
 
-**Steps:**
-1. Determine review target (PR, branch, or local diff).
-2. Gather changed files and diffs.
-3. Run relevant review agents in parallel when available.
-4. Prioritize findings by severity.
-5. Output critical issues first, then recommendations.
+<review_target> #$ARGUMENTS </review_target>
 
-**Output:** Findings ordered by severity; critical issues first, then recommendations.
+Determine: PR (number/URL), branch name, or current branch. Fetch diff and file list:
+- PR: `gh pr view <number>` + `gh pr diff <number>`
+- Branch: `git diff main...<branch> --name-only` + `git diff main...<branch>`
+
+## Protected Artifacts
+
+Never recommend deleting or ignoring `docs/plans/*.md` or `docs/solutions/*.md`. Discard any agent finding that suggests removing these.
+
+## Run Review Agents
+
+First inspect which repos/files were changed. Then spawn all applicable review agents **in parallel** using the Task tool (`subagent_type: generalPurpose`). For each, tell the subagent to read its agent file and review the provided diff + file list.
+
+Select agents based on what changed:
+
+- `frontend/` or Angular touched → `angular-reviewer` (`agents/review/angular-reviewer.md`) + `julik-frontend-races-reviewer` (`agents/review/julik-frontend-races-reviewer.md`)
+- `backend/` or NestJS touched → `nestjs-reviewer` (`agents/review/nestjs-reviewer.md`)
+- `*-lambda/` or `*-processor/` touched → `lambda-reviewer` (`agents/review/lambda-reviewer.md`)
+- TypeORM migration created or entity changed → `data-integrity-guardian` (`agents/review/data-integrity-guardian.md`) + `schema-drift-detector` (`agents/review/schema-drift-detector.md`)
+- Auth, secrets, S3, or file upload touched → `security-sentinel` (`agents/review/security-sentinel.md`)
+- Always → `kieran-typescript-reviewer` (`agents/review/kieran-typescript-reviewer.md`) + `code-simplicity-reviewer` (`agents/review/code-simplicity-reviewer.md`) + `architecture-strategist` (`agents/review/architecture-strategist.md`) + `learnings-researcher` (`agents/research/learnings-researcher.md`)
+
+Each Task tool call must include the full diff content and changed file list in the prompt.
+
+## Synthesize
+
+Merge findings; remove duplicates; prioritize by severity (critical → warning → informational). Present:
+1. **Summary** — what changed and scope
+2. **Critical issues** — must fix before merge
+3. **Recommendations** — should fix
+4. **Informational** — optional improvements

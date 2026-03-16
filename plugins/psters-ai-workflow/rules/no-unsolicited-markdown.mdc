@@ -5,11 +5,15 @@ alwaysApply: true
 
 # No Unsolicited Markdown Files
 
-**Purpose:** Prevent spontaneous creation of markdown files outside defined workflows.
+**NEVER** create `.md` files spontaneously. Only create them when:
 
-**Required behavior:** Create `.md` files only when:
-1. The user explicitly requests documentation.
-2. A workflow command defines markdown output (e.g. `/plan` → `docs/plans/*.md`; `/work-plan` or `/work` → updates existing plan/docs when required).
-3. Updating an existing markdown file that is part of the current task.
+1. The user explicitly asks ("create a README", "document this in markdown")
+2. A **workflow command** instructs it — these commands create `.md` files as part of their defined output:
+   - `/brainstorm` → `docs/brainstorms/*.md`
+   - `/plan` → `docs/plans/*.md`
+   - `/compound` → `docs/solutions/*.md`
+   - `/doc` → `docs/lambdas/*.md`, `docs/modules/*.md`, `docs/features/*.md`, `docs/decisions/*.md`
+   - `/work` and `/work-plan` → update existing docs (module, feature, Lambda, pattern docs)
+3. Updating an **existing** `.md` file as part of a code task (e.g. updating docs that reference changed code)
 
-**Constraints:** Do not create unsolicited summaries, changelogs, or ad-hoc documentation.
+**NEVER** create unsolicited summary files, changelog files, or documentation files outside of the above cases. Provide summaries directly in chat.

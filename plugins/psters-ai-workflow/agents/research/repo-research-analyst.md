@@ -17,8 +17,8 @@ model: inherit
 
 ### 2. Rules and Guidelines
 - Read ALL `.cursor/rules/*.mdc` files relevant to the feature area
-- Specifically note: TypeORM migration rules (CLI only), error capture system, commit format (`[TICKET-XXXX]`), user-facing text (English only), no left border bars, AWS CLI + SSO requirement
-- Note guard usage: `JwtAuthGuard` is global; org membership is service-layer (no guard)
+- Specifically note: TypeORM migration rules (CLI only), error capture system, commit format (`[TICKET-XXXX]`), user-facing text (English only), AWS CLI + SSO requirement
+- Note guard usage: auth guards, permission checks, service-layer vs guard-layer patterns
 
 ### 3. Feature Module Mapping
 - Find the relevant NestJS module(s): `src/<feature>/`, `src/<feature>/<feature>.module.ts`, `*.controller.ts`, `*.service.ts`, `dto/`, interfaces

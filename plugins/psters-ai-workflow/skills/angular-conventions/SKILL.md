@@ -1,18 +1,16 @@
 ---
 name: angular-conventions
-description: Frontend conventions for Angular projects: standalone components, feature structure, and clean implementation patterns.
+description: Frontend conventions for Angular projects: standalone components, features, error capture, styles. Use when implementing or reviewing code in Angular frontends.
 ---
 
 # Angular Conventions
 
-**When to use:** Working in Angular frontend codebases.
+When working in `frontend/` (or Angular app root), follow these conventions:
 
-**Workflow:** Apply these conventions consistently:
-- **Structure:** Feature-based organization (`core/`, `shared/`, `features/<feature>/`).
-- **Components:** Prefer standalone components; clear boundaries between presentation and logic.
-- **Naming:** Kebab-case files and folders; PascalCase classes; clear, descriptive symbols.
-- **Error handling:** Capture and handle errors in predictable, centralized flows.
-- **UX consistency:** Keep user-facing text and interaction patterns consistent across features.
-- **Validation:** Run project build checks after implementation.
+- **Structure**: Feature-based; standalone components only. `core/`, `shared/`, `features/<feature>/` with components, services, models, `*-routes.ts`. Kebab-case files; PascalCase classes.
+- **Error capture**: All errors must be captured: use centralized error capture in RxJS pipes, and wrap try/catch with error capture. See project rules for error-capture patterns.
+- **User-facing text**: All in English (user-facing-text rule).
+- **Build**: Run `npm run build` after implementation.
+- **Lazy loading**: Use loadComponent/loadChildren for feature routes.
 
-**Constraints:** Follow project rules for error capture, styling, and user-facing text.
+Reference project rules and structure docs for full details.

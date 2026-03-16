@@ -8,5 +8,6 @@
   },
   "license": "MIT",
   "keywords": ["workflow", "ai", "planning", "review", "commits", "cursor"],
-  "logo": "assets/logo.svg"
+  "logo": "assets/logo.svg",
+  "hooks": "hooks/hooks.json"
 }
