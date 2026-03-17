@@ -2,6 +2,14 @@
 
 Esta pasta contém a versão em português da documentação.
 
+## Artigo em destaque
+
+> **Novo artigo sobre o workflow**
+>
+> **[Gasto mais de R$1.500/mês em IA e faturo mais de R$40.000/mês, O segredo é o workflow!](https://www.linkedin.com/pulse/gasto-mais-de-r1500m%25C3%25AAs-em-ia-e-faturo-r40000m%25C3%25AAs-o-segredo-viana-fglwf/)**
+>
+> Contexto completo da metodologia, com casos reais de uso, paralelismo com subagents e disciplina de execução.
+
 ## Troca de idioma
 
 - English: `../english/README.md`

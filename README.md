@@ -14,6 +14,14 @@ An anti-vibe-coding, agentic AI workflow that improves results with engineering 
 
 - Discord: [Pster's AI Workflow Discord](https://discord.gg/vxyrWuqUhe)
 
+## Featured article
+
+> **New article by João Pedro Viana**
+>
+> **[Gasto mais de R$1.500/mês em IA e faturo mais de R$40.000/mês, O segredo é o workflow!](https://www.linkedin.com/pulse/gasto-mais-de-r1500m%25C3%25AAs-em-ia-e-faturo-r40000m%25C3%25AAs-o-segredo-viana-fglwf/)**
+>
+> A practical deep-dive into how this workflow was built and used in real projects.
+
 ## Documentation Navigation
 
 - Docs index (start here): [docs/README.md](docs/README.md)
