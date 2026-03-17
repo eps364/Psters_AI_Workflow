@@ -9,6 +9,13 @@
   <a href="#psters-ai-workflow-explained-english">English</a> · <a href="#psters-ai-workflow-explicado-portugues-pt-br">Português (PT-BR)</a>
 </p>
 <p align="center">
+  <img src="https://img.shields.io/badge/commands-9-7c3aed?style=for-the-badge" alt="Commands: 9">
+  <img src="https://img.shields.io/badge/agents-41-2563eb?style=for-the-badge" alt="Agents: 41">
+  <img src="https://img.shields.io/badge/hooks-4-0d9488?style=for-the-badge" alt="Hooks: 4">
+  <img src="https://img.shields.io/badge/rules-2-f59e0b?style=for-the-badge" alt="Rules: 2">
+  <img src="https://img.shields.io/badge/skills-6-16a34a?style=for-the-badge" alt="Skills: 6">
+</p>
+<p align="center">
   <img src="https://img.shields.io/badge/workflow-model--agnostic-5b6cff?style=for-the-badge" alt="Workflow: Model-agnostic">
   <img src="https://img.shields.io/badge/approach-anti--vibe--coding-0f172a?style=for-the-badge" alt="Approach: Anti-vibe-coding">
   <img src="https://img.shields.io/badge/docs-bilingual-0ea5e9?style=for-the-badge" alt="Docs: Bilingual">
@@ -40,46 +47,49 @@ If your primary use case is software engineering, this repository is the default
 
 If your day-to-day work is **marketing execution** (CRO, SEO, paid media, campaign assets), there is a specialized ecosystem with a similar "context-first + iterative refinement" philosophy: [ESC Skills](https://github.com/guilhermemarketing/esc-skills).
 
-## Documentation Navigation
+## README Navigation
+
+- [Community](#community)
+- [Featured article](#featured-article)
+- [Adjacent ecosystems](#adjacent-ecosystems)
+- [Contribute and Expand](#contribute-and-expand)
+- [English section](#psters-ai-workflow-explained-english)
+- [Portuguese (PT-BR) section](#psters-ai-workflow-explicado-portugues-pt-br)
+
+### English section quick links
+
+- [Why this exists](#why-this-exists)
+- [Anti-vibe coding](#anti-vibe-coding)
+- [Install the plugin](#install-the-plugin)
+- [Core philosophy](#core-philosophy)
+- [Method in one diagram](#method-in-one-diagram)
+- [Quick adoption steps](#quick-adoption-steps)
+- [Choosing the right model for each step](#choosing-the-right-model-for-each-step)
+- [Workflow commands](#workflow-commands)
+- [Documentation as first-class citizen](#documentation-as-first-class-citizen)
+- [Hooks (automation guardrails)](#hooks-automation-guardrails)
+- [Extreme Programming alignment](#extreme-programming-alignment)
+
+### Portuguese section quick links
+
+- [Por que isso existe](#por-que-isso-existe)
+- [Anti-vibe coding](#anti-vibe-coding-1)
+- [Instalar o plugin](#instalar-o-plugin)
+- [Filosofia central](#filosofia-central)
+- [Metodo em um diagrama](#metodo-em-um-diagrama)
+- [Passo a passo de adocao](#passo-a-passo-de-adocao)
+- [Escolhendo o modelo certo para cada etapa](#escolhendo-o-modelo-certo-para-cada-etapa)
+- [Comandos do workflow](#comandos-do-workflow)
+- [Documentacao como parte obrigatoria](#documentacao-como-parte-obrigatoria)
+- [Hooks (guardrails de automacao)](#hooks-guardrails-de-automacao)
+- [Alinhamento com Extreme Programming (XP)](#alinhamento-com-extreme-programming-xp)
+
+## Full documentation in `docs/`
 
 - Docs index (start here): [docs/README.md](docs/README.md)
 - English docs index: [docs/english/README.md](docs/english/README.md)
 - Portuguese docs index: [docs/portuguese/README.md](docs/portuguese/README.md)
-
-### English docs
-
-- [Getting started](docs/english/getting-started.md)
-- [Workflow methodology](docs/english/workflow-methodology.md)
-- [Commands reference](docs/english/commands-reference.md)
-- [Command recipes](docs/english/command-recipes.md)
-- [Examples in practice](docs/english/examples-in-practice.md)
-- [Using the workflow outside Cursor](docs/english/other-editors.md)
-- [Hooks reference](docs/english/hooks-reference.md)
-- [FAQ](docs/english/faq.md)
-- [Marketing workflows bridge](docs/english/marketing-workflows.md)
-- [Docs quality checklist](docs/english/docs-quality-checklist.md)
-
-### Portuguese docs
-
-- [Comece em 10 minutos](docs/portuguese/getting-started.md)
-- [Metodologia do workflow](docs/portuguese/workflow-methodology.md)
-- [Referencia de comandos](docs/portuguese/commands-reference.md)
-- [Receitas de comandos](docs/portuguese/command-recipes.md)
-- [Exemplos na pratica](docs/portuguese/examples-in-practice.md)
-- [Usando o workflow fora do Cursor](docs/portuguese/other-editors.md)
-- [Referencia de hooks](docs/portuguese/hooks-reference.md)
-- [FAQ](docs/portuguese/faq.md)
-- [Workflow para marketing](docs/portuguese/marketing-workflows.md)
-- [Checklist de qualidade de documentacao](docs/portuguese/docs-quality-checklist.md)
-
-## Quick map
-
-- [Core philosophy](#core-philosophy)
-- [Method in one diagram](#method-in-one-diagram)
-- [Quick adoption steps](#quick-adoption-steps)
-- [Workflow commands](#workflow-commands)
-- [Hooks (automation guardrails)](#hooks-automation-guardrails)
-- [Extreme Programming alignment](#extreme-programming-alignment)
+- Wiki publishing: [docs/english/wiki-sync.md](docs/english/wiki-sync.md) and [docs/portuguese/wiki-sync.md](docs/portuguese/wiki-sync.md)
 
 ---
 
