@@ -7,7 +7,7 @@ Use this checklist before merging documentation changes.
 - [ ] Scope is explicit (what changed, where, and why).
 - [ ] Instructions are actionable and specific.
 - [ ] Terminology is consistent with project vocabulary.
-- [ ] `/work`, `/work-plan`, `/doc`, and `/compound` usage is correct.
+- [ ] `/pwf-work`, `/pwf-work-plan`, and `/pwf-doc` family (`/pwf-doc`, `/pwf-doc-foundation`, `/pwf-doc-runbook`, `/pwf-doc-capture`) usage is correct.
 - [ ] No project-internal confidential data is exposed.
 
 ## Structure quality

@@ -15,7 +15,7 @@ Those are **different filesystems**. The Windows app does not read `~/.cursor` i
 
 - `./scripts/install-plugin-local.sh` completed without errors.
 - Files exist under WSL at `~/.cursor/plugins/local/psters-ai-workflow/`.
-- Cursor opened as a normal Windows app does **not** list the plugin or expose `/brainstorm`, `/work`, etc.
+- Cursor opened as a normal Windows app does **not** list the plugin or expose `/pwf-brainstorm`, `/pwf-work`, etc.
 
 ## Recommended fix: use Cursor attached to WSL (Remote-WSL)
 

@@ -1,43 +1,69 @@
 # Comece em 10 Minutos
 
-Este guia ajuda voce a executar o workflow de ponta a ponta pela primeira vez.
+Este guia ajuda voce a executar o workflow de ponta a ponta pela primeira vez, com previsibilidade.
+
+## Ideia central antes de comecar
+
+- O caminho fica sob controle do desenvolvedor.
+- A IA executa a etapa escolhida com rigor.
+- Documentacao e memoria operacional obrigatoria.
 
 ## 1) Instalar plugin localmente
 
 1. `./scripts/install-plugin-local.sh`
 2. Reinicie o Cursor (ou recarregue a janela).
 
-**Windows + WSL:** Se voce rodou o script no WSL mas o plugin nao aparece no Cursor Windows, veja [Cursor no Windows + WSL](cursor-wsl-windows.md).
+**Windows + WSL:** Se voce instalou no WSL mas o plugin nao aparece no Cursor Windows, veja [Cursor no Windows + WSL](cursor-wsl-windows.md).
 
-## 2) Comece com uma task real
+## 2) Inicializar esqueleto de docs no projeto
 
-Use uma feature/fix pequena, mas real, do backlog.
+Rode:
 
-## 3) Execute o fluxo de comandos
+- `/pwf-setup-workspace` (recomendado quando for criar um layout multi-root novo)
+- `/pwf-setup`
 
-1. `/brainstorm` para definir escopo, arquitetura e restricoes.
-2. `/plan` para criar fases e tarefas executaveis.
-3. `/work-plan` para executar uma fase por chat.
-4. `/review` para encontrar riscos/regressoes e corrigir.
-5. `/commit-changes` para gerar commits limpos e estruturados.
+`/pwf-setup-workspace` cria a estrutura recomendada `<NomeProjeto>_Repos` + `<NomeProjeto>_Workspace` e gera um arquivo `.code-workspace`.
+`/pwf-setup` cria/repara a base de documentacao usada pelos comandos de execucao.
 
-## 4) Quando usar `/work`
+## 3) Entender comandos antes de executar
 
-Use `/work` para:
+Rode:
+
+- `/pwf-help`
+
+Se tiver duvida sobre um comando, peca ao `/pwf-help` para explicar o comando sem executar.
+
+## 4) Executar o fluxo principal
+
+1. `/pwf-brainstorm` -> definir escopo, direcao de arquitetura e decisoes principais.
+2. `/pwf-plan` -> gerar tarefas de implementacao em fases.
+3. Quality gates opcionais depois do plano:
+   - `/pwf-checklist`
+   - `/pwf-clarify`
+   - `/pwf-analyze`
+4. `/pwf-work-plan` -> executar uma fase por vez e repetir ate concluir todas as fases.
+5. `/pwf-review` -> revisao profunda quando necessario.
+6. `/pwf-commit-changes` -> commits locais estruturados.
+
+## 5) Faixa alternativa de execucao
+
+Use `/pwf-work` quando a mudanca for focada e fora de plano formal:
 
 - fixes pequenos
-- ajustes menores
-- mudancas de follow-up fora de plano formal
+- ajustes locais
+- follow-up apos fases planejadas
 
-`/work` continua lendo docs primeiro e atualizando docs no proprio fluxo.
+`/pwf-work` tambem forca leitura de docs antes e manutencao de docs depois.
 
-## 5) `/doc` vs `/compound`
+## 6) Comandos de documentacao (saida explicita)
 
-- `/work` e `/work-plan` ja atualizam docs por padrao.
-- Use `/doc` quando quiser forcar atualizacao de documentacao tecnica por escopo.
-- Use `/compound` quando quiser forcar registro de aprendizado (problema/solucao ou padrao reutilizavel).
+- `/pwf-doc` -> atualizacao tecnica por escopo.
+- `/pwf-doc-foundation` -> docs base (`infrastructure`, `architecture`, `integrations`, `environments`, `glossary`).
+- `/pwf-doc-runbook` -> runbooks operacionais.
+- `/pwf-doc-capture` -> aprendizados/padroes reutilizaveis.
+- `/pwf-doc-refresh` -> curadoria do ciclo de vida em `docs/solutions/`.
 
-## 6) Validar setup do plugin
+## 7) Validar setup do plugin
 
 Execute:
 

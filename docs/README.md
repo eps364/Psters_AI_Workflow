@@ -8,16 +8,22 @@
 - Contribution guide: `../CONTRIBUTING.md`
 - Methodology (EN): `english/workflow-methodology.md`
 - Methodology (PT-BR): `portuguese/workflow-methodology.md`
+- Under the hood (EN): `english/under-the-hood.md`
+- Por dentro do workflow (PT-BR): `portuguese/under-the-hood.md`
 - Commands reference (EN): `english/commands-reference.md`
 - Commands reference (PT-BR): `portuguese/commands-reference.md`
 - Extreme Programming (EN): `english/extreme-programming.md`
 - Extreme Programming (PT-BR): `portuguese/extreme-programming.md`
 - Getting started (EN): `english/getting-started.md`
 - Getting started (PT-BR): `portuguese/getting-started.md`
+- Suggested project structure (EN): `english/suggested-project-structure.md`
+- Estrutura de projeto sugerida (PT-BR): `portuguese/suggested-project-structure.md`
 - Cursor + WSL on Windows (EN): `english/cursor-wsl-windows.md`
 - Cursor + WSL no Windows (PT-BR): `portuguese/cursor-wsl-windows.md`
 - Command recipes (EN): `english/command-recipes.md`
 - Command recipes (PT-BR): `portuguese/command-recipes.md`
+- Command naming convention (EN): `english/command-naming-convention.md`
+- Convencao de nomes de comandos (PT-BR): `portuguese/command-naming-convention.md`
 - Examples in practice (EN): `english/examples-in-practice.md`
 - Examples in practice (PT-BR): `portuguese/examples-in-practice.md`
 - Hooks reference (EN): `english/hooks-reference.md`
@@ -30,3 +36,4 @@
 - Docs quality checklist (PT-BR): `portuguese/docs-quality-checklist.md`
 - Wiki sync (EN): `english/wiki-sync.md`
 - Wiki sync (PT-BR): `portuguese/wiki-sync.md`
+- Project operational overrides: `workflow/operational-overrides.md`

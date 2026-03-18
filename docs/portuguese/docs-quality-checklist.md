@@ -7,7 +7,7 @@ Use este checklist antes de fazer merge de mudancas em docs.
 - [ ] Escopo explicito (o que mudou, onde, e por que).
 - [ ] Instrucoes acionaveis e especificas.
 - [ ] Terminologia consistente com o vocabulario do projeto.
-- [ ] Uso correto de `/work`, `/work-plan`, `/doc` e `/compound`.
+- [ ] Uso correto de `/pwf-work`, `/pwf-work-plan` e familia `/pwf-doc` (`/pwf-doc`, `/pwf-doc-foundation`, `/pwf-doc-runbook`, `/pwf-doc-capture`).
 - [ ] Nenhum dado confidencial interno foi exposto.
 
 ## Qualidade de estrutura

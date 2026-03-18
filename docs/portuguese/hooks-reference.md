@@ -21,6 +21,6 @@ Este plugin usa hooks como guardrails para reforcar disciplina de workflow.
 
 Hooks sao reforco. Quem conduz o fluxo continuam sendo os comandos:
 
-- `/work` e `/work-plan` para implementacao
-- `/doc` e `/compound` para saidas explicitas de documentacao
-- `/review` para loops de feedback de qualidade
+- `/pwf-work` e `/pwf-work-plan` para implementacao
+- familia `/pwf-doc` para saidas explicitas de documentacao
+- `/pwf-review` para loops de feedback de qualidade

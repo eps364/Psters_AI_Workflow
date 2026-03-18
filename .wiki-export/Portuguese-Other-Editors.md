@@ -1,6 +1,6 @@
 > Source: `docs/portuguese/other-editors.md`
 
-# Usando o Workflow Fora do Cursor
+# Cursor + Claude Code
 
 > **Recomendacao: use o Cursor.**
 > Este workflow e distribuido como um plugin nativo do Cursor. No Cursor, os slash commands, hooks e sub-agentes funcionam automaticamente sem nenhuma configuracao manual. Quando o plugin chegar ao Cursor Marketplace, as atualizacoes serao entregues automaticamente dentro do proprio Cursor — sem precisar tocar no terminal.
@@ -12,21 +12,21 @@
 > ./scripts/install-plugin-local.sh
 > ```
 
-Se voce nao pode usar o Cursor, esta pagina explica como adaptar o workflow para outras ferramentas de IA.
+Se voce nao pode usar o Cursor, use Claude Code como unico fallback suportado.
 
-A metodologia central — brainstorm, plan, work-plan, review, commit — e agnostica de ferramenta. Cada comando e um arquivo markdown simples com um prompt estruturado. Esses arquivos funcionam em qualquer ferramenta que aceite prompts longos.
+A metodologia central e a mesma nos dois ambientes suportados: Cursor (principal) e Claude Code (fallback).
 
 ---
 
-## Comparativo de funcionalidades
+## Ambientes suportados
 
-| Funcionalidade | Cursor | Claude Code | Windsurf | VS Code + Copilot |
-|----------------|--------|-------------|----------|-------------------|
-| Slash commands nativos | ✅ | ✅ | ❌ | ❌ |
-| Regras / contexto global | ✅ | ✅ via `CLAUDE.md` | ✅ via `.windsurfrules` | ✅ via `copilot-instructions.md` |
-| Hooks (guardrails de automacao) | ✅ | ❌ | ❌ | ❌ |
-| Sub-agentes (pesquisa paralela) | ✅ | Parcial | ❌ | ❌ |
-| Atualizacoes automaticas | ✅ Marketplace | Manual | Manual | Manual |
+| Funcionalidade | Cursor | Claude Code |
+|----------------|--------|-------------|
+| Slash commands nativos | ✅ | ✅ |
+| Regras / contexto global | ✅ | ✅ via `CLAUDE.md` |
+| Hooks (guardrails de automacao) | ✅ | ❌ |
+| Sub-agentes (pesquisa paralela) | ✅ | Parcial |
+| Atualizacoes automaticas | ✅ Marketplace | Manual |
 
 ---
 
@@ -42,14 +42,24 @@ A metodologia central — brainstorm, plan, work-plan, review, commit — e agno
    git clone https://github.com/J-Pster/Psters_AI_Workflow.git
    ```
 
-2. No seu projeto, crie o diretorio de comandos e copie os comandos do workflow:
+2. Recomendado (automatizado): rode o instalador bridge a partir deste repositorio:
+
+   ```bash
+   node scripts/install-workflow-bridge.mjs --to claude --project /caminho/do/seu-projeto
+   ```
+
+   Esse comando:
+   - copia os comandos para `/caminho/do/seu-projeto/.claude/commands/`
+   - cria/atualiza um bloco gerenciado de regras Psters em `/caminho/do/seu-projeto/CLAUDE.md`
+
+3. Alternativa manual: no seu projeto, crie o diretorio de comandos e copie os comandos do workflow:
 
    ```bash
    mkdir -p .claude/commands
    cp /caminho/para/Psters_AI_Workflow/plugins/psters-ai-workflow/commands/*.md .claude/commands/
    ```
 
-3. Crie ou adicione ao `CLAUDE.md` na raiz do seu projeto para carregar as regras do workflow como contexto global. Copie o conteudo das regras desejadas — comece com `context7-documentation.mdc` e `commits.mdc`:
+4. Crie ou adicione ao `CLAUDE.md` na raiz do seu projeto para carregar as regras do workflow como contexto global. Copie o conteudo das regras desejadas — comece com `context7-documentation.mdc` e `commits.mdc`:
 
    ```bash
    # Cria CLAUDE.md se nao existir
@@ -63,11 +73,11 @@ A metodologia central — brainstorm, plan, work-plan, review, commit — e agno
 Rode o workflow no Claude Code exatamente como no Cursor:
 
 ```
-/brainstorm adicionar autenticacao de usuario com JWT
-/plan
-/work-plan
-/review
-/commit-changes
+/pwf-brainstorm adicionar autenticacao de usuario com JWT
+/pwf-plan
+/pwf-work-plan
+/pwf-review
+/pwf-commit-changes
 ```
 
 ### O que funciona no Claude Code
@@ -81,79 +91,19 @@ Rode o workflow no Claude Code exatamente como no Cursor:
 
 ```bash
 cd Psters_AI_Workflow && git pull
-cp plugins/psters-ai-workflow/commands/*.md /caminho/para/seu-projeto/.claude/commands/
+node scripts/install-workflow-bridge.mjs --to claude --project /caminho/do/seu-projeto
 ```
 
----
+### Cursor + Claude ao mesmo tempo
 
-## Windsurf
-
-[Windsurf](https://codeium.com/windsurf) (da Codeium) nao tem um sistema de slash commands nativo equivalente ao Cursor. Os comandos sao usados como prompts manuais no chat do Cascade.
-
-### Configuracao
-
-Copie o conteudo dos arquivos de regras para `.windsurfrules` na raiz do seu projeto:
+Se quiser Cursor como principal e Claude como fallback:
 
 ```bash
-touch .windsurfrules
-# Cole o conteudo das regras desejadas de:
-# plugins/psters-ai-workflow/rules/
-```
-
-### Uso
-
-1. Abra o arquivo de comando para a etapa desejada. Eles ficam em:
-   `plugins/psters-ai-workflow/commands/<comando>.md`
-
-2. Copie o conteudo do arquivo e cole no chat do Cascade como prompt.
-
-3. Siga a saida e avance para a proxima etapa.
-
-### Sequencia recomendada
-
-```
-[Cole conteudo de brainstorm.md] -> [Cole conteudo de plan.md] -> [Cole conteudo de work-plan.md] -> [Cole conteudo de review.md] -> [Cole conteudo de commit-changes.md]
-```
-
----
-
-## VS Code + GitHub Copilot
-
-O GitHub Copilot nao suporta slash commands personalizados equivalentes ao Cursor. Os comandos sao usados como prompts manuais no Copilot Chat.
-
-### Configuracao
-
-Adicione o contexto do workflow como instrucoes personalizadas:
-
-1. Crie `.github/copilot-instructions.md` no seu projeto.
-2. Cole o conteudo das regras desejadas de `plugins/psters-ai-workflow/rules/` nesse arquivo.
-
-### Uso
-
-1. Abra o arquivo de comando para a etapa: `plugins/psters-ai-workflow/commands/<comando>.md`
-2. Copie o conteudo e cole no Copilot Chat.
-3. Siga a saida e continue para a proxima etapa.
-
-A metodologia funciona exatamente do mesmo jeito — o sistema de slash commands e apenas uma camada de conveniencia.
-
----
-
-## Qualquer outra ferramenta de IA
-
-Para qualquer ferramenta de IA que aceite prompts longos:
-
-1. Abra o arquivo de comando para a etapa desejada: `plugins/psters-ai-workflow/commands/<comando>.md`
-2. Copie o conteudo completo e cole como seu prompt.
-3. Siga a saida e repita para a proxima etapa.
-
-A sequencia do workflow nao depende da ferramenta:
-
-```
-brainstorm -> plan -> work-plan (por fase) -> review -> commit-changes
+node scripts/install-workflow-bridge.mjs --to all --project /caminho/do/seu-projeto
 ```
 
 ---
 
 ## Resumo
 
-O caminho mais facil e o Cursor. Se voce nao pode usar o Cursor, **o Claude Code e a melhor alternativa** — ele preserva a experiencia de slash commands com configuracao minima. Para todas as outras ferramentas, use os arquivos de comando como prompts manuais: a metodologia continua funcionando, apenas a camada de conveniencia muda.
+Cursor e o caminho principal e foco oficial. Se voce nao pode usar Cursor, **Claude Code e o unico fallback suportado** e preserva a experiencia de slash commands com configuracao minima.

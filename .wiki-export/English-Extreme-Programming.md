@@ -26,11 +26,11 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  A["/brainstorm"] --> B["/plan"]
-  B --> C["/work-plan per phase"]
-  C --> D["/review"]
-  D --> E["/commit-changes"]
-  C --> F["/doc and /compound"]
+  A["/pwf-brainstorm"] --> B["/pwf-plan"]
+  B --> C["/pwf-work-plan per phase"]
+  C --> D["/pwf-review"]
+  D --> E["/pwf-commit-changes"]
+  C --> F["/pwf-doc family"]
   F --> C
 ```
 
@@ -38,11 +38,11 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-  XP1[XP: User Story + Planning] --> PW1[Psters: /brainstorm + /plan]
-  XP2[XP: Small Increment] --> PW2[Psters: /work-plan per phase]
-  XP3[XP: Continuous Feedback] --> PW3[Psters: /review loop]
-  XP4[XP: Refactor + Improve Design] --> PW4[Psters: /review findings + /work adjustments]
-  XP5[XP: Shared Understanding] --> PW5[Psters: mandatory docs update in /work and /work-plan]
+  XP1[XP: User Story + Planning] --> PW1[Psters: /pwf-brainstorm + /pwf-plan]
+  XP2[XP: Small Increment] --> PW2[Psters: /pwf-work-plan per phase]
+  XP3[XP: Continuous Feedback] --> PW3[Psters: /pwf-review loop]
+  XP4[XP: Refactor + Improve Design] --> PW4[Psters: /pwf-review findings + /pwf-work adjustments]
+  XP5[XP: Shared Understanding] --> PW5[Psters: mandatory docs update in /pwf-work and /pwf-work-plan]
   XP6[XP: Sustainable Delivery Rhythm] --> PW6[Psters: phased execution + structured commits]
 ```
 
@@ -62,9 +62,10 @@ If you already work with XP, adopt Psters AI Workflow as your AI execution layer
 - Run review loops.
 - Update docs every cycle.
 
-## `/doc` and `/compound` in this flow
+## `/pwf-doc` family in this flow
 
-- `/work-plan` already updates documentation as part of its mandatory execution flow.
-- `/work` also updates documentation in its own mandatory flow (useful for small fixes and minor adjustments outside a formal plan).
-- Use `/doc` when you want to explicitly force technical documentation updates by scope.
-- Use `/compound` when you want to explicitly force a learning artifact (problem/solution or reusable pattern).
+- `/pwf-work-plan` already updates documentation as part of its mandatory execution flow.
+- `/pwf-work` also updates documentation in its own mandatory flow (useful for small fixes and minor adjustments outside a formal plan).
+- Use `/pwf-doc` when you want to explicitly force technical documentation updates by scope.
+- Use `/pwf-doc-foundation` for project baseline docs; `/pwf-doc-runbook` for operational runbooks.
+- Use `/pwf-doc-capture` when you want to explicitly force a learning artifact (problem/solution or reusable pattern).

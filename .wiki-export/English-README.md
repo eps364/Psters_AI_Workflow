@@ -13,10 +13,13 @@ This folder contains the English version of the documentation.
 ## Files
 
 - `getting-started.md`
+- `suggested-project-structure.md`
 - `cursor-wsl-windows.md` — plugin installed via WSL but not visible in Windows Cursor
 - `workflow-methodology.md`
+- `under-the-hood.md`
 - `commands-reference.md`
 - `command-recipes.md`
+- `command-naming-convention.md`
 - `examples-in-practice.md`
 - `other-editors.md`
 - `extreme-programming.md`

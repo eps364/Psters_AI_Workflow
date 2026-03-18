@@ -21,6 +21,6 @@ This plugin uses hooks as guardrails to reinforce workflow discipline.
 
 Hooks are reinforcement. Core commands still drive the workflow:
 
-- `/work` and `/work-plan` for implementation
-- `/doc` and `/compound` for explicit documentation outputs
-- `/review` for quality feedback loops
+- `/pwf-work` and `/pwf-work-plan` for implementation
+- `/pwf-doc` family for explicit documentation outputs
+- `/pwf-review` for quality feedback loops

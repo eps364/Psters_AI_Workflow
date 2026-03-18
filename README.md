@@ -3,531 +3,427 @@
 </p>
 <h1 align="center">Pster's AI Workflow</h1>
 <p align="center">
-  <strong>Anti-vibe-coding workflow for engineering teams that want AI speed with software rigor.</strong>
+  <strong>Self-documenting, hallucination-reducing, and predictable AI workflow for software teams.</strong>
 </p>
 <p align="center">
-  <a href="#psters-ai-workflow-explained-english">English</a> · <a href="#psters-ai-workflow-explicado-portugues-pt-br">Português (PT-BR)</a>
+  <a href="#quick-explanation-english">English</a> · <a href="#quick-explanation-portuguese">Português (PT-BR)</a>
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/commands-9-7c3aed?style=for-the-badge" alt="Commands: 9">
-  <img src="https://img.shields.io/badge/agents-41-2563eb?style=for-the-badge" alt="Agents: 41">
+  <img src="https://img.shields.io/badge/commands-20-7c3aed?style=for-the-badge" alt="Commands: 20">
+  <img src="https://img.shields.io/badge/agents-45-2563eb?style=for-the-badge" alt="Agents: 45">
   <img src="https://img.shields.io/badge/hooks-4-0d9488?style=for-the-badge" alt="Hooks: 4">
-  <img src="https://img.shields.io/badge/rules-2-f59e0b?style=for-the-badge" alt="Rules: 2">
-  <img src="https://img.shields.io/badge/skills-6-16a34a?style=for-the-badge" alt="Skills: 6">
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/workflow-model--agnostic-5b6cff?style=for-the-badge" alt="Workflow: Model-agnostic">
-  <img src="https://img.shields.io/badge/approach-anti--vibe--coding-0f172a?style=for-the-badge" alt="Approach: Anti-vibe-coding">
-  <img src="https://img.shields.io/badge/docs-bilingual-0ea5e9?style=for-the-badge" alt="Docs: Bilingual">
-  <img src="https://img.shields.io/badge/focus-engineering%20rigor-16a34a?style=for-the-badge" alt="Focus: Engineering rigor">
+  <img src="https://img.shields.io/badge/rules-8-f59e0b?style=for-the-badge" alt="Rules: 8">
+  <img src="https://img.shields.io/badge/skills-17-16a34a?style=for-the-badge" alt="Skills: 17">
 </p>
 
-An AI workflow that is model-agnostic and editor-flexible, usable in any project (new or existing), with any framework, technology, or programming language, with a native plugin currently available for Cursor IDE.
+An auto-documenting, model-agnostic AI workflow for any project, framework, and language. It reduces hallucination and keeps delivery predictable: the developer controls the path, AI executes the steps, and project standards stay consistent.
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <p><strong>🚀 START HERE</strong></p>
-      <h2>Pster's AI Workflow Explained</h2>
-      <p><strong>Choose your language to jump into the full guide:</strong></p>
-      <p>
-        <a href="#psters-ai-workflow-explained-english"><strong>🇺🇸 English</strong></a>
-        &nbsp;|&nbsp;
-        <a href="#psters-ai-workflow-explicado-portugues-pt-br"><strong>🇧🇷 Português (PT-BR)</strong></a>
-      </p>
-    </td>
-  </tr>
-</table>
+```mermaid
+%%{init: {"flowchart": {"curve": "linear", "rankSpacing": 40, "nodeSpacing": 28}} }%%
+flowchart LR
+  B["/pwf-brainstorm<br/>Define scope and decisions"] --> P["/pwf-plan<br/>Generate phased implementation plan"]
+  P --> Q{"Use quality gates?"}
+  Q -->|Yes| C["/pwf-checklist<br/>Validate requirement quality"]
+  C --> L["/pwf-clarify<br/>Resolve critical ambiguities"]
+  L --> A["/pwf-analyze<br/>Run read-only consistency analysis"]
+  A --> W["/pwf-work-plan<br/>Implement one phase"]
+  Q -->|No| W
 
-## Community
+  W --> R{"More phases pending?"}
+  R -->|Yes| W
+  R -->|No| V["/pwf-review<br/>Review and fix findings"]
+  V --> M["/pwf-commit-changes<br/>Create structured commits"]
+
+  X["/pwf-work<br/>Fast lane outside formal plan"] -. optional lane .-> V
+  D["Docs are central:<br/>/pwf-work and /pwf-work-plan read docs first<br/>and update docs automatically"] -.-> W
+  D -.-> X
+
+  classDef core fill:#EEF2FF,stroke:#4F46E5,color:#111827,stroke-width:1.2px;
+  classDef quality fill:#ECFDF5,stroke:#059669,color:#111827,stroke-width:1.2px;
+  classDef execution fill:#FFF7ED,stroke:#EA580C,color:#111827,stroke-width:1.2px;
+  classDef close fill:#F5F3FF,stroke:#7C3AED,color:#111827,stroke-width:1.2px;
+  classDef docs fill:#EFF6FF,stroke:#2563EB,color:#111827,stroke-width:1.2px;
+  classDef decision fill:#F8FAFC,stroke:#475569,color:#0F172A,stroke-width:1.1px;
+
+  class B,P core;
+  class C,L,A quality;
+  class W,X execution;
+  class V,M close;
+  class D docs;
+  class Q,R decision;
+```
+
+<a id="quick-explanation-english"></a>
+
+## ⚡ Quick Explanation
+
+The default flow is:
+`/pwf-brainstorm` (shape feature scope and decisions) ->
+`/pwf-plan` (turn decisions into phased implementation tasks) ->
+`/pwf-work-plan` (implement one phase per execution, repeating until all phases are complete).
+
+After `/pwf-plan`, you can run `/pwf-checklist`, `/pwf-clarify`, and `/pwf-analyze` as quality gates before implementation.
+
+`/pwf-work-plan` executes planned phases.  
+`/pwf-work` executes focused changes outside a formal plan.
+
+This workflow prioritizes predictability: commands do not autonomously pick your path.
+The developer understands each command and explicitly chooses the next step.
+
+Predictability and documentation are the two central pillars of this plugin:
+- `/pwf-work` and `/pwf-work-plan` read documentation before implementation and generate/maintain docs automatically during execution.
+- when you want explicit documentation output, use `/pwf-doc` (scoped docs), `/pwf-doc-foundation` (foundation docs like infrastructure/architecture/integrations/environments/glossary), `/pwf-doc-runbook` (operational runbooks), `/pwf-doc-capture` (reusable learnings), and `/pwf-doc-refresh` (docs lifecycle curation).
+- this keeps standards consistent and turns docs into reusable project memory for both AI and engineers.
+
+Deep dive:
+- [English Wiki](https://github.com/J-Pster/Psters_AI_Workflow/wiki)
+- [English Workflow Methodology](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Workflow-Methodology)
+- [English Under The Hood](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Under-The-Hood)
+
+## 🚀 Quick Start
+
+### 1) Install and start using immediately
+
+1. Install manually (Marketplace is not available yet):
+   - `./scripts/install-plugin-local.sh`
+2. Restart Cursor (or reload window).
+3. Start with:
+   - `/pwf-help` (quick orientation)
+   - `/pwf-brainstorm` or `/pwf-work` (first real task)
+
+### 2) If your project is NEW
+
+Recommended setup:
+
+1. `/pwf-setup-workspace` to create `<ProjectName>_Repos` + `<ProjectName>_Workspace`.
+2. Open the generated `.code-workspace` in Cursor.
+3. `/pwf-setup` to initialize docs skeleton.
+4. `/pwf-doc-foundation all` to create baseline docs.
+
+### 3) If your project ALREADY EXISTS
+
+Recommended setup:
+
+1. `/pwf-setup` to create/repair workflow docs structure.
+2. `/pwf-doc-foundation all` to document current architecture/infrastructure/integrations/environments/glossary.
+3. Use manual scoped documentation commands for existing areas:
+   - `/pwf-doc module <name>`
+   - `/pwf-doc feature <name>`
+   - `/pwf-doc update`
+   - `/pwf-doc-runbook <service-or-operation>` (when operations are undocumented)
+4. Then continue with `/pwf-brainstorm` + `/pwf-plan` + `/pwf-work-plan`, or `/pwf-work` for focused direct changes.
+
+If you are unsure about any command, run `/pwf-help` and ask it to explain that command without executing it (example: "explain `/pwf-doc-foundation` only").
+
+Need a deeper onboarding path?
+- [English Getting Started (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Getting-Started)
+- [English Commands Reference (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Commands-Reference)
+
+### Primary workflow steps
+
+- **Step 1 — `/pwf-brainstorm`**: explore the feature scope, architecture direction, and key decisions.
+- **Step 2 — `/pwf-plan`**: generate the phased implementation plan and executable tasks.
+  - After `/pwf-plan`, optionally run quality gates before execution:
+    - `/pwf-checklist` — validate requirement quality.
+    - `/pwf-clarify` — resolve high-impact ambiguities.
+    - `/pwf-analyze` — run read-only consistency/coverage analysis across plan and docs.
+- **Step 3 — `/pwf-work-plan`**: implement one phase from the plan, then repeat until all phases are complete.
+
+### Additional execution paths
+
+### Work lane commands (outside the main phased path)
+
+- `/pwf-work` — direct execution lane for focused changes outside formal plan.
+- `/pwf-work-light` — lightweight path for trivial/local changes.
+- `/pwf-work-tdd` — tests-first execution when explicitly requested.
+
+### Review and delivery commands
+
+- `/pwf-review` — structured multi-agent review.
+- `/pwf-commit-changes` — structured ticket-aware commits (not part of the primary 3-command flow, but part of delivery closure).
+
+### Documentation commands
+
+- `/pwf-doc` — scoped documentation hub to generate/update specific docs (module, feature, architecture, ADR, infrastructure, full update, and custom targets).
+- `/pwf-doc-foundation` — create/refresh core project docs baseline (`infrastructure`, `architecture`, `integrations`, `environments`, `glossary`).
+- `/pwf-doc-runbook` — create/refresh operational runbooks under `docs/runbooks/`.
+- `/pwf-doc-capture` — capture reusable learnings/patterns after solving non-trivial work.
+- `/pwf-doc-refresh` — review and curate `docs/solutions/` lifecycle (keep, update, replace, archive) with user approval.
+
+If you are unsure which docs command to use, ask `/pwf-help` to compare them first.
+
+### Auxiliary commands
+
+- `/pwf-help` — command guide and workflow orientation.
+- `/pwf-setup` — initialize/repair project docs skeleton.
+- `/pwf-setup-workspace` — create recommended multi-root project layout (`*_Repos` + `*_Workspace`) and workspace file.
+- `/pwf-aws-lambda-deploy` — guarded Lambda deployment flow when relevant.
+
+## 🧩 Why This Workflow Exists
+
+Pster's AI Workflow follows a **Spec-Driven Development** mindset inspired by **Extreme Programming (XP)**:
+
+- fast incremental delivery (small batches, short feedback loops),
+- dynamic depth (lightweight when simple, deeper when risk is higher),
+- predictable execution (explicit command-by-command flow),
+- context-first implementation to reduce hallucination,
+- standard preservation through mandatory documentation reads/updates.
+
+This project was informed by practical lessons from:
+
+- Compound Engineering,
+- Superpowers,
+- SpecKit (GitHub).
+
+What is different in this workflow:
+
+- **Developer-controlled path:** commands do not auto-pick the next strategy; the developer explicitly chooses the path.
+- **AI-executed rigor:** once the path is chosen, AI executes with structured guardrails.
+- **Documentation as core runtime memory:** docs are not optional artifacts; they are generated and maintained during delivery.
+- **Single flow that adapts:** same workflow can run light or heavy without changing philosophy.
+
+Learn the full rationale:
+- [English Workflow Methodology (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Workflow-Methodology)
+- [English Under The Hood (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Under-The-Hood)
+- [English Extreme Programming (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Extreme-Programming)
+
+## 🚀 Why Teams Choose It
+
+- **Modular by design:** commands, skills, agents, rules, and hooks each have clear responsibilities.
+- **Dynamic rigor:** small tasks can move fast; critical tasks can activate stronger guardrails and deeper analysis.
+- **Documentation as system memory:** project `docs/` is continuously generated, updated, and reused for future work.
+- **Project-agnostic:** usable in new or existing projects, across stacks and languages.
+- **Open source and extensible:** community can add capabilities, commands, agents, and rules.
+
+## 📚 Documentation and Wiki
+
+- Main Wiki entry point: [Psters AI Workflow Wiki](https://github.com/J-Pster/Psters_AI_Workflow/wiki)
+- Wiki highlights:
+  - [English Getting Started](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Getting-Started)
+  - [English Suggested Project Structure](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Suggested-Project-Structure)
+  - [English Workflow Methodology](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Workflow-Methodology)
+  - [English Commands Reference](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Commands-Reference)
+  - [English FAQ](https://github.com/J-Pster/Psters_AI_Workflow/wiki/English-Faq)
+  - [Portuguese Wiki](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Wiki-Portuguese)
+- Main docs index: [docs/README.md](docs/README.md)
+- English docs: [docs/english/README.md](docs/english/README.md)
+- Portuguese docs: [docs/portuguese/README.md](docs/portuguese/README.md)
+- Wiki publishing flow:
+  - [docs/english/wiki-sync.md](docs/english/wiki-sync.md)
+  - [docs/portuguese/wiki-sync.md](docs/portuguese/wiki-sync.md)
+
+## 🌍 Community and Contribution
 
 - Discord: [Pster's AI Workflow Discord](https://discord.gg/vxyrWuqUhe)
+- Featured article:
+  - [Gasto mais de R$1.500/mês em IA e faturo mais de R$40.000/mês, O segredo é o workflow!](https://www.linkedin.com/pulse/gasto-mais-de-r1500m%25C3%25AAs-em-ia-e-faturo-r40000m%25C3%25AAs-o-segredo-viana-fglwf/)
 
-## Featured article
-
-> **New article by João Pedro Viana**
->
-> **[Gasto mais de R$1.500/mês em IA e faturo mais de R$40.000/mês, O segredo é o workflow!](https://www.linkedin.com/pulse/gasto-mais-de-r1500m%25C3%25AAs-em-ia-e-faturo-r40000m%25C3%25AAs-o-segredo-viana-fglwf/)**
->
-> A practical deep-dive into how this workflow was built and used in real projects.
-
-## Adjacent ecosystems
-
-If your primary use case is software engineering, this repository is the default path.
-
-If your day-to-day work is **marketing execution** (CRO, SEO, paid media, campaign assets), there is a specialized ecosystem with a similar "context-first + iterative refinement" philosophy: [ESC Skills](https://github.com/guilhermemarketing/esc-skills).
-
-## README Navigation
-
-- [Community](#community)
-- [Featured article](#featured-article)
-- [Adjacent ecosystems](#adjacent-ecosystems)
-- [Contribute and Expand](#contribute-and-expand)
-- [English section](#psters-ai-workflow-explained-english)
-- [Portuguese (PT-BR) section](#psters-ai-workflow-explicado-portugues-pt-br)
-
-### English section quick links
-
-- [Why this exists](#why-this-exists)
-- [Anti-vibe coding](#anti-vibe-coding)
-- [Install the plugin](#install-the-plugin)
-- [Core philosophy](#core-philosophy)
-- [Method in one diagram](#method-in-one-diagram)
-- [Quick adoption steps](#quick-adoption-steps)
-- [Choosing the right model for each step](#choosing-the-right-model-for-each-step)
-- [Workflow commands](#workflow-commands)
-- [Documentation as first-class citizen](#documentation-as-first-class-citizen)
-- [Hooks (automation guardrails)](#hooks-automation-guardrails)
-- [Extreme Programming alignment](#extreme-programming-alignment)
-
-### Portuguese section quick links
-
-- [Por que isso existe](#por-que-isso-existe)
-- [Anti-vibe coding](#anti-vibe-coding-1)
-- [Instalar o plugin](#instalar-o-plugin)
-- [Filosofia central](#filosofia-central)
-- [Metodo em um diagrama](#metodo-em-um-diagrama)
-- [Passo a passo de adocao](#passo-a-passo-de-adocao)
-- [Escolhendo o modelo certo para cada etapa](#escolhendo-o-modelo-certo-para-cada-etapa)
-- [Comandos do workflow](#comandos-do-workflow)
-- [Documentacao como parte obrigatoria](#documentacao-como-parte-obrigatoria)
-- [Hooks (guardrails de automacao)](#hooks-guardrails-de-automacao)
-- [Alinhamento com Extreme Programming (XP)](#alinhamento-com-extreme-programming-xp)
-
-## Full documentation in `docs/`
-
-- Docs index (start here): [docs/README.md](docs/README.md)
-- English docs index: [docs/english/README.md](docs/english/README.md)
-- Portuguese docs index: [docs/portuguese/README.md](docs/portuguese/README.md)
-- Wiki publishing: [docs/english/wiki-sync.md](docs/english/wiki-sync.md) and [docs/portuguese/wiki-sync.md](docs/portuguese/wiki-sync.md)
-
----
-
-## Contribute and Expand
-
-This plugin is open to anyone who wants to suggest, expand, and improve it for all developers.
-
-- Want to add new agents?
-- Want to add or improve commands?
-- Want language-specific workflow expansions?
-
-You can contribute in two ways:
-
-- **Idea-only contribution**: open an issue in this GitHub repository and describe your idea. If you do not want to implement it yourself, someone from the community can pick it up.
-- **Code contribution**: open an issue and submit a pull request. We review and discuss everything on GitHub.
-
-Everyone who contributes meaningfully will be recognized as a contributor in this project.
-
+Contribute with ideas or code via GitHub issues and pull requests.
 Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-## Psters AI Workflow Explained (English)
+<a id="quick-explanation-portuguese"></a>
 
-`psters-ai-workflow` is an agentic workflow for using AI like a professional software engineer.
+## ⚡ Explicacao Rapida (Português - PT-BR)
 
-This is an **anti-vibe-coding** workflow.
-It is not about one-shot prompts, random generation, or "let AI do everything without design".
-It is about engineering discipline: clear decisions, explicit architecture, phased execution, and structured review.
-
-This workflow is language-agnostic and framework-agnostic. You can use it in any codebase.
-
-### Why this exists
-
-AI usage in software development became mainstream, but a large part of the market moved toward "vibe coding".
-This project goes in the opposite direction:
-
-- You define the architecture and constraints.
-- AI helps you reason, plan, execute, and review.
-- Work is broken into steps with traceability.
-- Quality gates and documentation are part of the flow.
-
-This workflow was built from real daily usage in a production startup environment over multiple weeks, with continuous feature delivery.
-
-### Anti-vibe coding
-
-**Vibe coding** = one-shot prompts, minimal context, hope for the best. It produces brittle, inconsistent, and hard-to-maintain code.
-
-**Anti-vibe coding** = contextualize the AI, document continuously, and enforce structure:
-
-1. **Contextualize the AI** — Before implementation, the AI must read existing docs (`docs/solutions/`, `docs/modules/`, `docs/features/`, `docs/lambdas/`), rules, and patterns. `/work` and `/work-plan` enforce this: their first step is always reading documentation, never editing code.
-2. **Document continuously** — Documentation is operational memory for future AI and engineers. Every implementation cycle updates docs. `/work` and `/work-plan` both read and update docs as part of their mandatory workflow (Step 5: Documentation Maintenance).
-3. **Enforce structure** — Phases, tasks, review loops, and commit conventions keep work traceable and reviewable.
-
-### Install the plugin
-
-> Using a different editor? See [Using the workflow outside Cursor](docs/english/other-editors.md).
-
-### Option 1: Cursor Marketplace
-
-When published, install from [Cursor Marketplace](https://cursor.com/marketplace). Updates are delivered automatically.
-
-### Option 2: Manual install (available now)
-
-1. Run:
-   - `./scripts/install-plugin-local.sh`
-2. Restart Cursor (or reload the window).
-
-The install script is idempotent: re-running it always produces a clean, up-to-date installation. To update, run `git pull` and re-run the script.
-
-After install, confirm the plugin appears in Cursor Plugins and commands are available.
-
-**Windows + WSL:** If you install from a WSL terminal, use Cursor **connected to WSL** (Remote-WSL) so it reads Linux `~/.cursor`. See [docs/english/cursor-wsl-windows.md](docs/english/cursor-wsl-windows.md).
-
-### Core philosophy
-
-Do not run one giant prompt and hope for the best.
-
-Use this sequence instead:
-
-1. Define intent and constraints.
-2. Explore trade-offs.
-3. Produce an implementation plan.
-4. Execute in controlled phases.
-5. Review and fix.
-6. Document and commit with quality.
-
-In short: **you define the "how"; AI executes with rigor**.
-
-### Method in one diagram
+Um workflow de IA auto-documentado e agnóstico de modelo para qualquer projeto, framework e linguagem. Ele reduz alucinação e mantém a entrega previsível: o desenvolvedor controla o caminho, a IA executa as etapas, e os padrões do projeto permanecem consistentes.
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear", "rankSpacing": 40, "nodeSpacing": 28}} }%%
 flowchart LR
-  A[Idea] --> B["/brainstorm"]
-  B --> C["/plan"]
-  C --> D["/work-plan per phase"]
-  D --> E["/review"]
-  E --> F["/commit-changes"]
-  D --> G["/doc and /compound"]
-  G --> D
+  B["/pwf-brainstorm<br/>Definir escopo e decisoes"] --> P["/pwf-plan<br/>Gerar plano de implementacao em fases"]
+  P --> Q{"Usar quality gates?"}
+  Q -->|Sim| C["/pwf-checklist<br/>Validar qualidade dos requisitos"]
+  C --> L["/pwf-clarify<br/>Resolver ambiguidades criticas"]
+  L --> A["/pwf-analyze<br/>Analise read-only de consistencia"]
+  A --> W["/pwf-work-plan<br/>Implementar uma fase"]
+  Q -->|Nao| W
+
+  W --> R{"Ainda existem fases pendentes?"}
+  R -->|Sim| W
+  R -->|Nao| V["/pwf-review<br/>Revisar e corrigir findings"]
+  V --> M["/pwf-commit-changes<br/>Gerar commits estruturados"]
+
+  X["/pwf-work<br/>Faixa rapida fora do plano formal"] -. caminho opcional .-> V
+  D["Docs sao centrais:<br/>/pwf-work e /pwf-work-plan leem docs antes<br/>e atualizam docs automaticamente"] -.-> W
+  D -.-> X
+
+  classDef core fill:#EEF2FF,stroke:#4F46E5,color:#111827,stroke-width:1.2px;
+  classDef quality fill:#ECFDF5,stroke:#059669,color:#111827,stroke-width:1.2px;
+  classDef execution fill:#FFF7ED,stroke:#EA580C,color:#111827,stroke-width:1.2px;
+  classDef close fill:#F5F3FF,stroke:#7C3AED,color:#111827,stroke-width:1.2px;
+  classDef docs fill:#EFF6FF,stroke:#2563EB,color:#111827,stroke-width:1.2px;
+  classDef decision fill:#F8FAFC,stroke:#475569,color:#0F172A,stroke-width:1.1px;
+
+  class B,P core;
+  class C,L,A quality;
+  class W,X execution;
+  class V,M close;
+  class D docs;
+  class Q,R decision;
 ```
 
-### Quick adoption steps
+Fluxo padrão:
+`/pwf-brainstorm` (definir escopo e decisões) ->
+`/pwf-plan` (transformar decisões em tarefas por fase) ->
+`/pwf-work-plan` (implementar uma fase por execução, repetindo até concluir todas as fases).
 
-1. Start every feature with `/brainstorm`.
-2. Convert decisions to phases using `/plan`.
-3. Execute one phase per chat using `/work-plan`.
-4. Use `/work` for small fixes, minor adjustments, and follow-up changes outside a formal plan.
-5. Run `/review`, fix issues, and re-run review.
-6. Use `/doc` and `/compound` when you want to force specific documentation output.
+Depois do `/pwf-plan`, você pode rodar `/pwf-checklist`, `/pwf-clarify` e `/pwf-analyze` como quality gates antes da implementação.
 
-> Tip: `/work-plan` is the default for phased implementation, while `/work` is the fast lane for smaller scoped changes.
+`/pwf-work-plan` executa fases planejadas.  
+`/pwf-work` executa mudanças focadas fora de um plano formal.
 
-### Choosing the right model for each step
+Este workflow prioriza previsibilidade: os comandos não escolhem o caminho por conta própria.
+O desenvolvedor entende cada comando e escolhe explicitamente o próximo passo.
 
-Not all steps require the same model. The most important distinction is between **planning** and **execution**.
+Previsibilidade e documentação são os dois pilares centrais deste plugin:
+- `/pwf-work` e `/pwf-work-plan` leem documentação antes de implementar e geram/mantêm docs automaticamente durante a execução.
+- quando você quer saída explícita de documentação, use `/pwf-doc` (docs por escopo), `/pwf-doc-foundation` (base de docs como infrastructure/architecture/integrations/environments/glossary), `/pwf-doc-runbook` (runbooks operacionais), `/pwf-doc-capture` (aprendizados reutilizáveis) e `/pwf-doc-refresh` (curadoria do ciclo de vida de docs).
+- isso mantém padrões consistentes e transforma docs em memória reutilizável para IA e engenharia.
 
-**Planning steps (`/brainstorm`, `/plan`) → use your most capable model.**
-These steps define the architecture, scope, and task breakdown for the entire feature. A weak plan produces rework regardless of how well execution is done. Invest in model quality here — the cost is negligible compared to the cost of a poorly designed feature.
+Aprofundar:
+- [Wiki em Português](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Wiki-Portuguese)
+- [Metodologia do Workflow (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Workflow-Methodology)
+- [Por Dentro do Workflow (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Under-The-Hood)
 
-**Execution steps (`/work-plan`, `/work`) → a mid-tier model in auto mode is enough.**
-The plan already exists. The decisions have been made. The agent follows structured instructions and updates docs. There is no need for a top-tier model for well-scoped execution tasks.
+## 🚀 Inicio Rapido
 
-**Review (`/review`) → prefer a capable model.**
-Review requires deep reasoning to spot regressions, edge cases, and architectural risks.
+### 1) Instalar e começar a usar na hora
 
-| Step | Model recommendation |
-|------|---------------------|
-| `/brainstorm` | High-capability model (Sonnet, Opus, equivalents) |
-| `/plan` | High-capability model — this is the most critical step |
-| `/work-plan` | Mid-tier model in auto or standard mode |
-| `/work` | Mid-tier model in auto or standard mode |
-| `/review` | High-capability model |
-| `/commit-changes` | Any model |
-
-### Workflow commands
-
-Recommended flow:
-
-`/brainstorm` -> `/plan` -> `/work-plan` (per phase) -> `/review` -> `/commit-changes`
-
-Command overview:
-
-- `/brainstorm`: shape the feature idea, constraints, architecture, and decisions.
-- `/plan`: convert brainstorm decisions into phased, executable tasks.
-- `/work-plan`: execute one phase at a time (new chat per phase recommended). **Reads and updates docs** as part of the flow.
-- `/review`: run structured review, fix findings, and re-run review.
-- `/work`: execute non-plan tasks (small fixes, follow-up adjustments). **Reads and updates docs** as part of the flow.
-- `/compound`: capture reusable learnings/patterns as docs.
-- `/doc`: generate or refresh technical docs (module, feature, architecture, ADR, updates).
-- `/deploy-lambda`: deploy Lambda functions with script-driven workflow.
-- `/commit-changes`: create well-structured commits from implemented work.
-
-`/doc` vs `/compound`:
-
-- `/work` and `/work-plan` already perform mandatory documentation updates inside their own execution flow.
-- `/doc` is used when you want to explicitly force documentation generation/update for a specific scope.
-- `/compound` is used when you want to explicitly force a learning artifact (problem/solution or reusable pattern).
-
-> Important: use `/doc` to describe the current system state; use `/compound` to preserve reusable learning.
-
-### Documentation as first-class citizen
-
-`/work` and `/work-plan` treat documentation as mandatory:
-
-- **Step 1**: Read existing docs before any code change.
-- **Step 5**: Update docs after implementation (doc-shepherd, module/feature/lambda docs, pattern extraction).
-- **Quality gate**: Docs must pass specificity, state clarity, operational usefulness, and consistency checks.
-
-This keeps `docs/` accurate and useful for future AI runs and human engineers.
-
-### Hooks (automation guardrails)
-
-The plugin also uses hooks to reinforce the workflow:
-
-- track code vs docs edits during a session
-- remind documentation update when code changed without doc updates
-- remind commit message convention before `git commit`
-- remind TypeORM migration atomic chain after `typeorm:generate`
-
-These hooks do not replace commands like `/work`, `/work-plan`, `/doc`, and `/compound`; they enforce them.
-
-### Extreme Programming alignment
-
-This workflow is heavily aligned with XP principles:
-
-- **Small batches**: phased implementation instead of big-bang changes.
-- **Fast feedback**: review loop and iterative correction.
-- **Collective code ownership**: explicit documentation and traceable decisions.
-- **Continuous integration mindset**: validate often, not only at the end.
-- **Simplicity first**: avoid speculative complexity and keep scope explicit.
-
-```mermaid
-flowchart TB
-  XP1[XP: Story + Planning] --> PW1[Psters: /brainstorm + /plan]
-  XP2[XP: Small Increment] --> PW2[Psters: /work-plan per phase]
-  XP3[XP: Feedback Loop] --> PW3[Psters: /review and fix loop]
-  XP4[XP: Collective Knowledge] --> PW4[Psters: mandatory docs updates]
-```
-
-### Documentation map
-
-- `docs/english/getting-started.md`: first-run guide in 10 minutes (EN).
-- `docs/english/workflow-methodology.md`: full methodology (EN).
-- `docs/english/commands-reference.md`: command-by-command usage guide (EN).
-- `docs/english/command-recipes.md`: practical command sequences by scenario (EN).
-- `docs/english/examples-in-practice.md`: realistic workflow examples (EN).
-- `docs/english/hooks-reference.md`: hook events and behaviors (EN).
-- `docs/english/faq.md`: common questions and usage decisions (EN).
-- `docs/english/marketing-workflows.md`: bridge note for marketing-focused workflow ecosystems (EN).
-- `docs/english/docs-quality-checklist.md`: quality checklist before docs merge (EN).
-- `docs/english/wiki-sync.md`: how to publish docs to GitHub Wiki (EN).
-- `docs/english/`: English documentation set.
-- `docs/portuguese/`: Portuguese documentation set.
-
-### Repository notes
-
-This repository currently maintains one plugin:
-
-- `plugins/psters-ai-workflow`
-
-Validation command:
-
-- `node scripts/validate-template.mjs`
-
----
-
-<a id="psters-ai-workflow-explicado-portugues-pt-br"></a>
-
-## Psters AI Workflow Explicado (Português - PT-BR)
-
-`psters-ai-workflow` e um workflow agêntico para usar IA como engenheiro de software profissional.
-
-Este e um workflow **anti-vibe-coding**.
-Nao e sobre one-shot prompt, geracao aleatoria, ou "deixar a IA fazer tudo sem desenho".
-E sobre disciplina de engenharia: decisoes claras, arquitetura explicita, execucao em fases e revisao estruturada.
-
-Ele e agnostico de linguagem e framework. Voce pode usar em qualquer codebase.
-
-### Por que isso existe
-
-O uso de IA no desenvolvimento ficou mainstream, mas muita gente caiu no "vibe coding".
-Este projeto segue no sentido oposto:
-
-- Voce define arquitetura e restricoes.
-- A IA ajuda a raciocinar, planejar, executar e revisar.
-- O trabalho e quebrado em etapas com rastreabilidade.
-- Qualidade e documentacao fazem parte do fluxo.
-
-Este workflow nasceu de uso real diario em ambiente de startup com entrega continua de funcionalidades.
-
-### Anti-vibe coding
-
-**Vibe coding** = prompt unico, pouco contexto, torcer para dar certo. Resultado: codigo fragil, inconsistente e dificil de manter.
-
-**Anti-vibe coding** = contextualizar IA, documentar continuamente e impor estrutura:
-
-1. **Contextualize a IA** — Antes de implementar, a IA precisa ler docs existentes (`docs/solutions/`, `docs/modules/`, `docs/features/`, `docs/lambdas/`), regras e padroes. `/work` e `/work-plan` forcam isso: primeiro passo e leitura de docs, nunca edicao direta de codigo.
-2. **Documente continuamente** — Documentacao e memoria operacional para futuras execucoes de IA e para engenharia. Todo ciclo de implementacao atualiza docs. `/work` e `/work-plan` leem e atualizam docs como etapa obrigatoria.
-3. **Imponha estrutura** — fases, tarefas, loops de review e padrao de commit mantem o trabalho rastreavel.
-
-### Instalar o plugin
-
-> Usando outro editor? Veja [Usando o workflow fora do Cursor](docs/portuguese/other-editors.md).
-
-### Opcao 1: Cursor Marketplace
-
-Quando publicado, instale via [Cursor Marketplace](https://cursor.com/marketplace). As atualizacoes serao entregues automaticamente.
-
-### Opcao 2: Instalacao manual (disponivel agora)
-
-1. Rode:
+1. Instale manualmente (ainda não está no Marketplace):
    - `./scripts/install-plugin-local.sh`
 2. Reinicie o Cursor (ou recarregue a janela).
+3. Comece com:
+   - `/pwf-help` (orientação rápida)
+   - `/pwf-brainstorm` ou `/pwf-work` (primeira task real)
 
-O script de instalacao e idempotente: rode quantas vezes quiser — ele sempre produz uma instalacao limpa e atualizada. Para atualizar, faca `git pull` e rode o script novamente.
+### 2) Se o projeto for NOVO
 
-Depois da instalacao, confirme que o plugin aparece na lista de Plugins do Cursor e que os comandos estao disponiveis.
+Setup recomendado:
 
-**Windows + WSL:** Se voce instalar pelo terminal WSL, use o Cursor **conectado ao WSL** (Remote-WSL) para ele ler o `~/.cursor` do Linux. Veja [docs/portuguese/cursor-wsl-windows.md](docs/portuguese/cursor-wsl-windows.md).
+1. `/pwf-setup-workspace` para criar `<NomeProjeto>_Repos` + `<NomeProjeto>_Workspace`.
+2. Abra o `.code-workspace` gerado no Cursor.
+3. `/pwf-setup` para inicializar o esqueleto de docs.
+4. `/pwf-doc-foundation all` para criar documentação base.
 
-### Filosofia central
+### 3) Se o projeto JÁ EXISTE
 
-Nao rode um prompt gigante e torca pelo melhor.
+Setup recomendado:
 
-Use esta sequencia:
+1. `/pwf-setup` para criar/reparar a estrutura de docs do workflow.
+2. `/pwf-doc-foundation all` para documentar estado atual de architecture/infrastructure/integrations/environments/glossary.
+3. Use comandos manuais de documentação por escopo nas áreas existentes:
+   - `/pwf-doc module <name>`
+   - `/pwf-doc feature <name>`
+   - `/pwf-doc update`
+   - `/pwf-doc-runbook <servico-ou-operacao>` (quando operações ainda não estão documentadas)
+4. Depois siga com `/pwf-brainstorm` + `/pwf-plan` + `/pwf-work-plan`, ou use `/pwf-work` para mudanças diretas e focadas.
 
-1. Definir intencao e restricoes.
-2. Explorar trade-offs.
-3. Produzir um plano de implementacao.
-4. Executar em fases controladas.
-5. Revisar e corrigir.
-6. Documentar e commitar com qualidade.
+Se tiver dúvida sobre qualquer comando, rode `/pwf-help` e peça para explicar o comando sem executar (exemplo: "explique apenas `/pwf-doc-foundation`").
 
-Em resumo: **voce define o "como"; a IA executa com rigor**.
+Quer onboarding completo com mais contexto?
+- [Começando Agora (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Getting-Started)
+- [Referência de Comandos (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Commands-Reference)
 
-### Metodo em um diagrama
+### Etapas principais do workflow
 
-```mermaid
-flowchart LR
-  A[Ideia] --> B["/brainstorm"]
-  B --> C["/plan"]
-  C --> D["/work-plan por fase"]
-  D --> E["/review"]
-  E --> F["/commit-changes"]
-  D --> G["/doc e /compound"]
-  G --> D
-```
+- **Step 1 — `/pwf-brainstorm`**: explorar escopo da feature, direção de arquitetura e decisões principais.
+- **Step 2 — `/pwf-plan`**: gerar plano de implementação em fases e tarefas executáveis.
+  - Depois do `/pwf-plan`, opcionalmente rode quality gates antes da execução:
+    - `/pwf-checklist` — validar qualidade dos requisitos.
+    - `/pwf-clarify` — resolver ambiguidades de alto impacto.
+    - `/pwf-analyze` — análise read-only de consistência/cobertura entre plano e docs.
+- **Step 3 — `/pwf-work-plan`**: implementar uma fase do plano e repetir até concluir todas as fases.
 
-### Passo a passo de adocao
+### Caminhos adicionais de execução
 
-1. Comece toda feature com `/brainstorm`.
-2. Converta decisoes em fases com `/plan`.
-3. Execute uma fase por chat com `/work-plan`.
-4. Use `/work` para fixes pequenos, ajustes menores e mudancas fora de plano formal.
-5. Rode `/review`, corrija pendencias e rode de novo.
-6. Use `/doc` e `/compound` quando quiser forcar uma saida de documentacao especifica.
+### Comandos da faixa work (fora do caminho principal em fases)
 
-> Dica: `/work-plan` e o caminho padrao para implementacao em fases, enquanto `/work` e o caminho rapido para mudancas menores.
+- `/pwf-work` — execução direta para mudanças focadas fora de plano formal.
+- `/pwf-work-light` — caminho leve para mudanças triviais/locais.
+- `/pwf-work-tdd` — execução tests-first quando solicitado explicitamente.
 
-### Escolhendo o modelo certo para cada etapa
+### Comandos de review e entrega
 
-Nem toda etapa precisa do mesmo modelo. A distincao mais importante e entre **planejamento** e **execucao**.
+- `/pwf-review` — revisão estruturada com múltiplos agentes.
+- `/pwf-commit-changes` — commits estruturados com ticket (não faz parte do fluxo principal de 3 comandos, mas fecha a entrega).
 
-**Etapas de planejamento (`/brainstorm`, `/plan`) → use o modelo mais capaz disponivel.**
-Essas etapas definem arquitetura, escopo e o detalhamento de tarefas para toda a feature. Um plano fraco gera retrabalho independente da qualidade da execucao. O custo de um modelo mais caro aqui e irrelevante perto do custo de uma feature mal planejada.
+### Comandos de documentação
 
-**Etapas de execucao (`/work-plan`, `/work`) → modelo intermediario em modo auto e suficiente.**
-O plano ja existe. As decisoes foram tomadas. O agente segue instrucoes estruturadas. Nao e necessario modelo de ponta para execucao bem definida.
+- `/pwf-doc` — hub de documentação por escopo (module, feature, architecture, ADR, infrastructure, full update e custom).
+- `/pwf-doc-foundation` — cria/atualiza baseline de docs do projeto (`infrastructure`, `architecture`, `integrations`, `environments`, `glossary`).
+- `/pwf-doc-runbook` — cria/atualiza runbooks operacionais em `docs/runbooks/`.
+- `/pwf-doc-capture` — captura aprendizados/padrões reutilizáveis após trabalho não trivial.
+- `/pwf-doc-refresh` — revisa e cura ciclo de vida de `docs/solutions/` (keep, update, replace, archive) com aprovação do usuário.
 
-**Revisao (`/review`) → prefira modelo mais capaz.**
-Revisao exige raciocinio profundo para identificar regressoes, edge cases e riscos arquiteturais.
+Se houver dúvida sobre qual comando de docs usar, peça ao `/pwf-help` para comparar os comandos antes.
 
-| Etapa | Modelo recomendado |
-|-------|-------------------|
-| `/brainstorm` | Modelo de alta capacidade (Sonnet, Opus, equivalentes) |
-| `/plan` | Modelo de alta capacidade — etapa mais critica |
-| `/work-plan` | Modelo intermediario em auto ou modo padrao |
-| `/work` | Modelo intermediario em auto ou modo padrao |
-| `/review` | Modelo de alta capacidade |
-| `/commit-changes` | Qualquer modelo |
+### Comandos auxiliares
 
-### Comandos do workflow
+- `/pwf-help` — guia de comandos e orientação de workflow.
+- `/pwf-setup` — inicializa/repara o esqueleto de documentação do projeto.
+- `/pwf-setup-workspace` — cria layout multi-root recomendado (`*_Repos` + `*_Workspace`) e arquivo de workspace.
+- `/pwf-aws-lambda-deploy` — fluxo protegido para deploy de Lambda quando aplicável.
 
-Fluxo recomendado:
+## 🧩 Por Que Este Workflow Existe
 
-`/brainstorm` -> `/plan` -> `/work-plan` (por fase) -> `/review` -> `/commit-changes`
+O Pster's AI Workflow segue um mindset de **Spec-Driven Development** inspirado em **Extreme Programming (XP)**:
 
-Visao geral:
+- entrega incremental rápida (lotes pequenos, ciclos curtos de feedback),
+- profundidade dinâmica (leve no simples, mais robusto no risco alto),
+- execução previsível (fluxo explícito comando a comando),
+- implementação context-first para reduzir alucinação,
+- preservação de padrão via leitura/atualização obrigatória de documentação.
 
-- `/brainstorm`: desenha ideia, restricoes, arquitetura e decisoes.
-- `/plan`: converte decisoes em tarefas executaveis por fases.
-- `/work-plan`: executa uma fase por vez (ideal em chat novo). **Le e atualiza docs** no fluxo.
-- `/review`: roda revisao estruturada, corrige pendencias e roda de novo.
-- `/work`: executa tarefas fora de plano formal. **Le e atualiza docs** no fluxo.
-- `/compound`: captura aprendizados e padroes reutilizaveis.
-- `/doc`: gera/atualiza docs tecnicas (modulo, feature, arquitetura, ADR, update).
-- `/deploy-lambda`: deploy de Lambda guiado por script.
-- `/commit-changes`: cria commits bem estruturados.
+Este projeto foi informado por lições práticas de:
 
-`/doc` vs `/compound`:
+- Compound Engineering,
+- Superpowers,
+- SpecKit (GitHub).
 
-- `/work` e `/work-plan` ja atualizam documentacao de forma obrigatoria dentro do fluxo de execucao.
-- `/doc` e para quando voce quer forcar geracao/atualizacao de documentacao tecnica de um escopo especifico.
-- `/compound` e para quando voce quer forcar registro de aprendizado (problema/solucao ou padrao reutilizavel).
+O que é diferente neste workflow:
 
-> Importante: use `/doc` para descrever o estado atual do sistema; use `/compound` para preservar aprendizado reutilizavel.
+- **Caminho controlado pelo desenvolvedor:** os comandos não escolhem estratégia automaticamente; o desenvolvedor escolhe o caminho explicitamente.
+- **Rigor executado por IA:** após escolher o caminho, a IA executa com guardrails estruturados.
+- **Documentação como memória operacional central:** docs não são artefatos opcionais; são geradas e mantidas durante a entrega.
+- **Fluxo único e adaptável:** o mesmo workflow pode operar no modo leve ou profundo sem trocar de filosofia.
 
-### Documentacao como parte obrigatoria
+Entenda o racional completo:
+- [Metodologia do Workflow (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Workflow-Methodology)
+- [Por Dentro do Workflow (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Under-The-Hood)
+- [Extreme Programming (XP) (Wiki)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Extreme-Programming)
 
-`/work` e `/work-plan` tratam documentacao como obrigatoria:
+## 🚀 Por Que Times Escolhem Este Workflow
 
-- **Step 1**: ler docs antes de qualquer mudanca de codigo.
-- **Step 5/4**: atualizar docs depois da implementacao (doc-shepherd, docs de modulo/feature/lambda, extracao de padrao).
-- **Quality gate**: docs precisam passar criterios de especificidade, clareza de estado, utilidade operacional e consistencia.
+- **Modular por design:** commands, skills, agents, rules e hooks têm responsabilidades claras.
+- **Rigor dinâmico:** tarefas pequenas avançam rápido; tarefas críticas ativam mais guardrails e análise.
+- **Documentação como memória de sistema:** `docs/` do projeto é gerada, atualizada e reutilizada continuamente.
+- **Agnóstico de projeto:** funciona em projetos novos ou existentes, em diferentes stacks e linguagens.
+- **Open source e extensível:** a comunidade pode adicionar capacidades, comandos, agentes e regras.
 
-Isso mantem `docs/` util para futuras execucoes de IA e para humanos.
+## 📚 Documentação e Wiki
 
-### Hooks (guardrails de automacao)
+- Entrada principal da Wiki: [Psters AI Workflow Wiki](https://github.com/J-Pster/Psters_AI_Workflow/wiki)
+- Highlights da Wiki:
+  - [Começando Agora](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Getting-Started)
+  - [Estrutura de Projeto Sugerida](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Suggested-Project-Structure)
+  - [Metodologia do Workflow](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Workflow-Methodology)
+  - [Referência de Comandos](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Commands-Reference)
+  - [Perguntas Frequentes (FAQ)](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Portuguese-Faq)
+  - [English Wiki](https://github.com/J-Pster/Psters_AI_Workflow/wiki/Wiki-English)
+- Índice principal de docs: [docs/README.md](docs/README.md)
+- Docs em inglês: [docs/english/README.md](docs/english/README.md)
+- Docs em português: [docs/portuguese/README.md](docs/portuguese/README.md)
+- Fluxo de publicação para wiki:
+  - [docs/english/wiki-sync.md](docs/english/wiki-sync.md)
+  - [docs/portuguese/wiki-sync.md](docs/portuguese/wiki-sync.md)
 
-O plugin tambem usa hooks para reforcar o workflow:
+## 🌍 Comunidade e Contribuição
 
-- rastreia edicoes de codigo vs docs por sessao
-- lembra atualizacao de docs quando codigo muda sem documentacao
-- lembra convencao de commit antes de `git commit`
-- lembra cadeia atomica de migration apos `typeorm:generate`
+- Discord: [Pster's AI Workflow Discord](https://discord.gg/vxyrWuqUhe)
+- Artigo em destaque:
+  - [Gasto mais de R$1.500/mês em IA e faturo mais de R$40.000/mês, O segredo é o workflow!](https://www.linkedin.com/pulse/gasto-mais-de-r1500m%25C3%25AAs-em-ia-e-faturo-r40000m%25C3%25AAs-o-segredo-viana-fglwf/)
 
-Hooks nao substituem `/work`, `/work-plan`, `/doc` e `/compound`; eles reforcam esses comandos.
-
-### Alinhamento com Extreme Programming (XP)
-
-Este workflow segue principios de XP:
-
-- **Lotes pequenos**: implementacao em fases, sem big bang.
-- **Feedback rapido**: loop de review e correcao iterativa.
-- **Code ownership coletivo**: documentacao explicita e decisoes rastreaveis.
-- **Mentalidade de integracao continua**: validar ao longo do fluxo, nao so no fim.
-- **Simplicidade primeiro**: evitar complexidade especulativa.
-
-```mermaid
-flowchart TB
-  XP1[XP: Story + Planning] --> PW1[Psters: /brainstorm + /plan]
-  XP2[XP: Small Increment] --> PW2[Psters: /work-plan por fase]
-  XP3[XP: Feedback Loop] --> PW3[Psters: /review e correcoes]
-  XP4[XP: Conhecimento Coletivo] --> PW4[Psters: atualizacao obrigatoria de docs]
-```
-
-### Mapa de documentacao
-
-- `docs/portuguese/getting-started.md`: guia de primeira execucao em 10 minutos (PT-BR).
-- `docs/portuguese/workflow-methodology.md`: metodologia completa (PT-BR).
-- `docs/portuguese/commands-reference.md`: guia detalhado por comando (PT-BR).
-- `docs/portuguese/command-recipes.md`: sequencias praticas de comandos por cenario (PT-BR).
-- `docs/portuguese/examples-in-practice.md`: exemplos realistas de execucao do workflow (PT-BR).
-- `docs/portuguese/hooks-reference.md`: eventos e comportamentos dos hooks (PT-BR).
-- `docs/portuguese/faq.md`: duvidas comuns e decisoes de uso (PT-BR).
-- `docs/portuguese/marketing-workflows.md`: nota de ponte para workflows focados em marketing (PT-BR).
-- `docs/portuguese/docs-quality-checklist.md`: checklist de qualidade antes de merge de docs (PT-BR).
-- `docs/portuguese/wiki-sync.md`: como publicar docs na GitHub Wiki (PT-BR).
-- `docs/english/`: conjunto de documentacao em ingles.
-- `docs/portuguese/`: conjunto de documentacao em portugues.
-
-### Notas do repositorio
-
-Este repositorio atualmente mantem um plugin:
-
-- `plugins/psters-ai-workflow`
-
-Comando de validacao:
-
-- `node scripts/validate-template.mjs`
+Contribua com ideias ou código via issues e pull requests no GitHub.
+Guia de contribuição: [CONTRIBUTING.md](CONTRIBUTING.md)
